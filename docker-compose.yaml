@@ -1,0 +1,23 @@
+version: '3.0'
+
+services:
+  grafana:
+    container_name: 'dataspex-monetdb-datasource'
+    #platform: 'linux/amd64'
+    build:
+      context: ./.config
+      args:
+        grafana_image: ${GRAFANA_IMAGE:-grafana-enterprise}
+        grafana_version: ${GRAFANA_VERSION:-10.0.3}
+    ports:
+      - 4000:3000/tcp
+    volumes:
+      - ./dist:/var/lib/grafana/plugins/dataspex-monetdb-datasource
+      - ./provisioning:/etc/grafana/provisioning
+
+  monetdb:
+    image: monetdb/monetdb
+    environment:
+    - MDB_DB_ADMIN_PASS=monetdb
+    ports:
+    - 50000:50000/tcp
