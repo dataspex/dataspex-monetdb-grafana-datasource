@@ -1,0 +1,15 @@
+apiVersion: 1
+
+datasources:
+- name: MonetDB
+  type: monetdb-grafana-datasource
+  jsonData:
+    hostname: monetdb-grafana_monetdb_1
+    username: monetdb
+    port: 50000
+    database: monetdb
+  secureJsonData:
+    password: monetdb
+  version: 1
+  editable: true
+

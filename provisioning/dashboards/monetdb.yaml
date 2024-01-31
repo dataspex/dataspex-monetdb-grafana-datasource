@@ -1,0 +1,12 @@
+apiVersion: 1
+
+providers:
+  - name: 'monetdb'
+    folder: 'monetdb'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/monetdb
+      foldersFromFilesStructure: true
