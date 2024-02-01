@@ -1,4 +1,4 @@
-module github.com/dataspex/monetdb-grafana
+module github.com/dataspex/dataspex-monetdb-grafana-datasource
 
 go 1.21
 
