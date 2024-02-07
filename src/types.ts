@@ -1,11 +1,12 @@
 import { DataQuery, DataSourceJsonData } from '@grafana/data';
 
 export interface MyQuery extends DataQuery {
-  queryText?: string;
+  queryText: string;
 }
 
+// For example: SELECT current_timestamp(), 42
 export const DEFAULT_QUERY: Partial<MyQuery> = {
-  queryText: "SELECT current_timestamp(), 42"
+  queryText: ""
 };
 
 /**

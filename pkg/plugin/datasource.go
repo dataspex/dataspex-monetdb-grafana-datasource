@@ -161,7 +161,7 @@ func (d *Datasource) CheckHealth(_ context.Context, req *backend.CheckHealthRequ
 	var status = backend.HealthStatusOk
 	var message = "Data source is working"
 
-	err := d.mDB.Ping()
+	_, err := d.mDB.Query("SELECT 1")
 	if err != nil {
 		// Do not log the dsn as debug information, since it contains the password in plaintext
 		log.DefaultLogger.Error(fmt.Sprintf("monetdb: health check failed: %s", err.Error()))

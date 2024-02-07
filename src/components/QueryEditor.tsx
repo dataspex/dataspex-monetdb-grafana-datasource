@@ -1,23 +1,40 @@
-import React, { ChangeEvent } from 'react';
-import { InlineField, TextArea } from '@grafana/ui';
-import { QueryEditorProps } from '@grafana/data';
-import { DataSource } from '../datasource';
-import { MyDataSourceOptions, MyQuery } from '../types';
+import React, { ReactElement } from 'react';
+import { css } from '@emotion/css';
+import { CodeEditor, useStyles2 } from '@grafana/ui';
+import { GrafanaTheme2 } from '@grafana/data';
+import type { EditorProps } from './types';
+import { useChangeString } from './useChangeString';
 
-type Props = QueryEditorProps<DataSource, MyQuery, MyDataSourceOptions>;
+export function QueryEditor(props: EditorProps): ReactElement {
+  const { query } = props;
 
-export function QueryEditor({ query, onChange, onRunQuery }: Props) {
-  const onQueryTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    onChange({ ...query, queryText: event.target.value });
-  };
+  const onChangeRawQuery = useChangeString(props, {
+    propertyName: 'queryText',
+    runQuery: true,
+  });
 
-  const { queryText } = query;
+  const styles = useStyles2(getStyles);
 
   return (
-    <div className="gf-form" style={{width: 400, height: 400}}>
-      <InlineField label="Query Text" labelWidth={16} tooltip="Not used yet">
-        <TextArea onChange={onQueryTextChange} value={queryText || ''} style={{width: 399, height: 399}}/>
-      </InlineField>
-    </div>
+    <>
+      <div className={styles.editor}>
+        <CodeEditor
+          height="300px"
+          showLineNumbers={true}
+          language="sql"
+          onBlur={onChangeRawQuery}
+          value={query.queryText}
+        />
+      </div>
+    </>
   );
-}
+
+  }
+
+  function getStyles(theme: GrafanaTheme2) {
+    return {
+      editor: css`
+        margin: ${theme.spacing(0, 0.5, 0.5, 0)};
+      `,
+    };
+  }
