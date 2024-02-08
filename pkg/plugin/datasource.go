@@ -130,10 +130,12 @@ func (d *Datasource) query(_ context.Context, pCtx backend.PluginContext, query 
 	if err != nil {
 		return backend.ErrDataResponse(backend.StatusBadRequest, fmt.Sprintf("monetdb: json unmarshal: %s", err.Error()))
 	}
+// 		if len(strings.TrimSpace(string(q.JSON))) > 0 {}
 
 	rows, err := d.mDB.Query(qm.Querytext)
 	if err != nil {
-		return backend.ErrDataResponse(backend.StatusBadRequest, fmt.Sprintf("monetdb: cannot run query %s on %s with error %s", qm.Querytext, d.dsn, err.Error()))
+		// Do not return the dsn in the error message, because it contains the password in cleartext
+		return backend.ErrDataResponse(backend.StatusBadRequest, fmt.Sprintf("monetdb: cannot run query %s with error %s", qm.Querytext, err.Error()))
 	}
 	if rows != nil {
 		log.DefaultLogger.Debug("monetdb: rows created")

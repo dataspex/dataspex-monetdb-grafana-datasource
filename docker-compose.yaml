@@ -21,3 +21,9 @@ services:
     - MDB_DB_ADMIN_PASS=monetdb
     ports:
     - 50000:50000/tcp
+
+  dataset:
+    container_name: 'create-dataset'
+    build:
+      context: ./provisioning/dataset
+      dockerfile: Dockerfile.dataset

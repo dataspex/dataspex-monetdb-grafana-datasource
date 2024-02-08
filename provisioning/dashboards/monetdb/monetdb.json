@@ -104,7 +104,7 @@
               "type": "monetdb-grafana-datasource",
               "uid": "PA584234B855588D6"
             },
-            "queryText": "SELECT current_timestamp(), 42",
+            "queryText": "SELECT * FROM dataset;",
             "refId": "A"
           }
         ],
@@ -120,7 +120,7 @@
       "list": []
     },
     "time": {
-      "from": "now-6h",
+      "from": "now-1h",
       "to": "now"
     },
     "timepicker": {},

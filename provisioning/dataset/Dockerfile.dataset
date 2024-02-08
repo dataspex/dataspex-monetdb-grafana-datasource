@@ -1,0 +1,9 @@
+FROM fedora:latest
+
+RUN dnf -y install https://dev.monetdb.org/downloads/Fedora/MonetDB-release.noarch.rpm
+RUN dnf -y install MonetDB-client
+
+COPY dataset.sql /tmp/
+COPY .monetdb /root/
+
+CMD sleep 30s && mclient -h dataspex-monetdb-grafana-datasource_monetdb_1 -p 50000 -d monetdb /tmp/dataset.sql

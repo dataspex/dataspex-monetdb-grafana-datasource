@@ -8,9 +8,8 @@ import { useChangeString } from './useChangeString';
 export function QueryEditor(props: EditorProps): ReactElement {
   const { query } = props;
 
-  const onChangeRawQuery = useChangeString(props, {
+  const onChangeQueryText = useChangeString(props, {
     propertyName: 'queryText',
-    runQuery: true,
   });
 
   const styles = useStyles2(getStyles);
@@ -22,7 +21,7 @@ export function QueryEditor(props: EditorProps): ReactElement {
           height="300px"
           showLineNumbers={true}
           language="sql"
-          onBlur={onChangeRawQuery}
+          onBlur={onChangeQueryText}
           value={query.queryText}
         />
       </div>

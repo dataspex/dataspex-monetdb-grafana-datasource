@@ -5,8 +5,8 @@ import type { ChangeOptions, EditorProps } from './types';
 type OnChangeType = (value: string) => void;
 
 export function useChangeString(props: EditorProps, options: ChangeOptions<MyQuery>): OnChangeType {
-  const { onChange, onRunQuery, query } = props;
-  const { propertyName, runQuery } = options;
+  const { onChange, query } = props;
+  const { propertyName } = options;
 
   return useCallback(
     (value: string) => {
@@ -19,10 +19,7 @@ export function useChangeString(props: EditorProps, options: ChangeOptions<MyQue
         [propertyName]: value,
       });
 
-      if (runQuery) {
-        onRunQuery();
-      }
     },
-    [onChange, onRunQuery, query, propertyName, runQuery]
+    [onChange, query, propertyName]
   );
 }

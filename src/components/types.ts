@@ -6,5 +6,4 @@ export type EditorProps = QueryEditorProps<DataSource, MyQuery, MyDataSourceOpti
 
 export type ChangeOptions<T> = {
   propertyName: keyof T;
-  runQuery: boolean;
 };

@@ -22,6 +22,10 @@ This is the first version of the plugin. Several features are not implemented ye
 
 ## Development
 
+### Testing
+
+The "provisioning" directory contains an example dasboard with the related datasource and plugin definition to illustrate how to use this datasource plugin.
+
 ### Docker compose
 
 The docker compose file creates two containers, one for Grafana and one for MonetDB. Please note that we publish port 4000 for the grafana frontend, not the default port of 3000. The reason is that this plugin was developed using cloud hosted version of VS code. That already published port 3000.
