@@ -3,9 +3,17 @@ import { DataSourceWithBackend, getTemplateSrv } from '@grafana/runtime';
 
 import { MyQuery, MyDataSourceOptions, DEFAULT_QUERY } from './types';
 
-export class DataSource extends DataSourceWithBackend<MyQuery, MyDataSourceOptions> {
-  constructor(instanceSettings: DataSourceInstanceSettings<MyDataSourceOptions>) {
+import { MonetDBVariableSupport } from './variableSupport';
+
+export class DataSource extends DataSourceWithBackend<
+  MyQuery, 
+  MyDataSourceOptions
+> {
+  constructor(
+      instanceSettings: DataSourceInstanceSettings<MyDataSourceOptions>
+  ) {
     super(instanceSettings);
+    this.variables = new MonetDBVariableSupport(this);
   }
 
   applyTemplateVariables(query: MyQuery, scopedVars: ScopedVars) {

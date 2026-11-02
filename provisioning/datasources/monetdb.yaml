@@ -4,7 +4,7 @@ datasources:
 - name: MonetDB
   type: dataspex-monetdb-datasource
   jsonData:
-    hostname: dataspex-monetdb-grafana-datasource_monetdb_1
+    hostname: dataspex-monetdb-grafana-datasource-monetdb-1
     username: monetdb
     port: 50000
     database: monetdb
